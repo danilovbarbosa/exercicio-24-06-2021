@@ -21,7 +21,7 @@ class SellerForm(ModelForm):
         fields = "__all__"
         
         PRODUCTS_CHOICES = [("a", "a")]
-        get_produtc()
+        # get_produtc()
         
         widgets = {
             "product": forms.MultipleChoiceField(
