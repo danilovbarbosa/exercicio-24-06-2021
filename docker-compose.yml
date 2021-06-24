@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+    bd:
+        image: postgres
+        environment: 
+            POSTGRES_PASSWORD: olist_ts
+            POSTGRES_USER: olist_ts
+            POSTGRES_DB: postgres
+        ports: 
+            - 5432:5432
+        container_name: bd
+        networks: 
+            - backend
+        healthcheck:
+            test: pg_isready -U olist_ts -d postgres
+            timeout: 3s
+            interval: 5s
+            retries: 3
+
+    app:
+        build: 
+            dockerfile: Dockerfile
+            context: .
+        image: danilocostaolist/ts-drf-api-produtos
+        container_name: app
+        ports: 
+            - 8000:8000
+        command: bash -f ./scripts/run.sh
+        volumes: 
+            - .:/var/www
+        working_dir: /var/www
+        depends_on: 
+            bd: 
+                condition: service_healthy
+        networks: 
+            - backend
+        restart: always            
+
+
+networks: 
+    backend:
+        driver: bridge
