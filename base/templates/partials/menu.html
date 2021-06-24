@@ -1,0 +1,33 @@
+{% load static %}
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <div>
+                <a href="{% url 'home' %}"><img class="logo" src="{% static 'images/logoolist.png' %}"
+                        alt="Logo do Olist"></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'read' %}" id="dropdown03"
+                            data-bs-toggle="dropdown" aria-expanded="false">Finanças</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                            <li><a class="dropdown-item" href="{% url 'read' %}">Listar Pagamentos</a></li>
+
+                            <li><a class="dropdown-item" href="{% url 'create' %}">Novo Pagamento</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" disabled>
+                    <button class="btn btn-outline-success" type="submit" disabled>Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+<br><br>
