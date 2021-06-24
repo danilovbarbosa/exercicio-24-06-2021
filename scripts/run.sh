@@ -22,4 +22,4 @@ Veja o relatório de teste disponível na pasta raiz do projeto com o nome: html
 
 '''
 
-python manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0.0.0.0:8001

@@ -7,8 +7,6 @@ services:
             POSTGRES_PASSWORD: olist_ts
             POSTGRES_USER: olist_ts
             POSTGRES_DB: postgres
-        ports: 
-            - 5432:5432
         container_name: bd
         networks: 
             - backend
@@ -25,7 +23,7 @@ services:
         image: danilocostaolist/ts-drf-api-produtos
         container_name: app
         ports: 
-            - 8000:8000
+            - "8001:8000"
         command: bash -f ./scripts/run.sh
         volumes: 
             - .:/var/www
