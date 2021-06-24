@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mt-4 maintitle">{{ title_page }}</h2>
+<a type="button" class="btn btn-primary" href="{% url 'create' %}">Novo Seller</a>
+{% if list_objetos %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">id_pedido</th>
+            <th scope="col">id_vendedor</th>
+            <th scope="col">status_pedido</th>
+            <th scope="col">valor_pedido</th>
+            <th scope="col">valor_delivery</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for post_objetos in list_objetos %}
+
+        <tr>
+            <td>{{ post_objetos.id }}</td>
+            <td>{{ post_objetos.id_pedido }}</td>
+            <td>{{ post_objetos.id_vendedor }}</td>
+            <td>{{ post_objetos.status_pedido }}</td>
+            <td>{{ post_objetos.valor_pedido }}</td>
+            <td>{{ post_objetos.valor_delivery }}</td>
+            <td><a type="button" class="btn btn-warning" href="{% url 'update' post_objetos.id %}">Update</a>
+            </td>
+            <td><a type="button" class="btn btn-danger" href="{% url 'delete' post_objetos.id %}">Delete</a>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+</table>
+{% else %}
+<div class="container">
+    <p>There are no published products.</p>
+</div>
+{% endif %}
+
+
+{% endblock content %}

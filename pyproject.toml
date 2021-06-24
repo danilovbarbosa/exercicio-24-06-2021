@@ -17,6 +17,7 @@ pytest-html = "^3.1.1"
 coverage = "^5.5"
 Faker = "^8.8.2"
 python-decouple = "^3.4"
+requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^21.6b0", allow-prereleases = true}
