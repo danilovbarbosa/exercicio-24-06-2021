@@ -1,40 +1,43 @@
 import requests
 import csv
 
+
 def set_url(url: str):
     return url
 
 
 def get_request(url_api):
-    '''
+    """
     Função faz requisição e retorna o json com lista de produtos
-    param: 
+    param:
     return: int
-    '''
+    """
     url_test = "http://192.168.160.3:8000/product/"
     r = requests.get(url_test)
     produtos_dict = r.json()
 
     return produtos_dict
 
+
 # def get_request(url_api, id: int):
 #     '''
 #     Função faz requisição e retorna o json com lista de produtos
-#     param: 
+#     param:
 #     return: int
 #     '''
-#     url_test = url_api + "product/"  
+#     url_test = url_api + "product/"
 #     r = requests.get(url_test)
 #     produtos_dict = r.json()
 
 #     return produtos_dict
 
+
 def post_request(url_api):
-    '''
+    """
     Função faz requisição post, enviando dados de produto, e retorna o json do produto
-    param: 
+    param:
     return: int
-    '''
+    """
     url_test = url_api + "product/"
     objeto = {
         "name": "test oi",
@@ -50,11 +53,11 @@ def post_request(url_api):
 
 
 def put_request(url_api, id: int):
-    '''
+    """
     Função faz requisição put, alterando dados do produto e retorna o json do produto deletado
-    param: 
+    param:
     return: int
-    '''
+    """
     url_test = f"{url_api}'product'/{id}/"
     objeto = {
         "name": "test put",
@@ -70,11 +73,11 @@ def put_request(url_api, id: int):
 
 
 def patch_request(url_api):
-    '''
+    """
     Função faz requisição e retorna o json do produto deletado
-    param: 
+    param:
     return: int
-    '''
+    """
     url_test = url_api + "product/2/"
     objeto = {
         "name": "test patch",
@@ -87,11 +90,11 @@ def patch_request(url_api):
 
 
 def delete_request(url_api) -> int:
-    '''
-        Função faz requisição e retorna o status code
-        param: 
-        return: int
-    '''
+    """
+    Função faz requisição e retorna o status code
+    param:
+    return: int
+    """
     url_test = url_api + "product/3/"
 
     r = requests.delete(url_test)
@@ -108,4 +111,3 @@ def delete_request(url_api) -> int:
 # patch_request(url_test)
 # delete_request(url_test)
 # get_request(url_test)
-

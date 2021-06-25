@@ -62,10 +62,10 @@ def delete_produtc():
 
     print(produtos_dict)
 
+
 get_produtc()
 post_produtc()
 put_produtc()
 patch_produtc()
 delete_produtc()
 get_produtc()
-
