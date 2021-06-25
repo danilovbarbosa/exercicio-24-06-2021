@@ -3,6 +3,28 @@ from django.http import request, response
 
 from seller.forms import SellerForm
 from seller.models import Seller
+from seller.serializers import SellerSerializer
+
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+
+# Views DRF
+class SellerView(APIView):
+    def get(self, request):
+        itens = Seller.objects.all()
+        serializer = SellerSerializer(itens, many=True)
+        return Response({"articles": serializer.data})
+    
+    def post(self, request):
+        item = request.data.get('name')
+
+        # Create an article from the above data
+        serializer = SellerSerializer(data=item)
+        if serializer.is_valid(raise_exception=True):
+            item_saved = serializer.save()
+        return Response({"success": "Seller '{}' created successfully".format(item_saved.name)})
+
 
 
 # Views Django
