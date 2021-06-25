@@ -6,18 +6,6 @@ Desafio: API DRF para gerenciar itens de loja.
 
 Construído sobre uma plataforma Python 3, Poetry, Pytest, Flake8, Python-decouple, Docker, Docker-Compose, Postgresql
 
-## Instruções instalação e execução com docker-compose
-
-- Configure as opções de: migrations, user_admin, pytest (com ou sem relatório) e runserver, em:
-
-> scripts/run.sh
-
-- No terminal execute:
-
-```sh
-docker-compose up
-```
-
 ## Instruções de instalação local
 
 - Instale o Python:
@@ -42,6 +30,19 @@ poetry shell
 
 ```sh
 flake8 .
+```
+
+- Execute as migrações:
+
+```sh
+python manage.py makemigrations
+python manage.py migrate
+```
+
+- Execute o servidor:
+
+```sh
+python manage.py runserver 0.0.0.0:8001
 ```
 
 ## Autor(es)
