@@ -11,12 +11,23 @@ def get_request(url_api):
     param: 
     return: int
     '''
-    url_test = url_api + "product/"
+    url_test = "http://192.168.160.3:8000/product/"
     r = requests.get(url_test)
     produtos_dict = r.json()
 
     return produtos_dict
 
+# def get_request(url_api, id: int):
+#     '''
+#     Função faz requisição e retorna o json com lista de produtos
+#     param: 
+#     return: int
+#     '''
+#     url_test = url_api + "product/"  
+#     r = requests.get(url_test)
+#     produtos_dict = r.json()
+
+#     return produtos_dict
 
 def post_request(url_api):
     '''

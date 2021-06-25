@@ -4,12 +4,12 @@ from django.http import request, response
 from seller.forms import SellerForm
 from seller.models import Seller
 from seller.serializers import SellerSerializer
+from seller.util import set_url, get_request
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet
 from rest_framework import status
-
 
 
 # Views DRF
@@ -18,15 +18,21 @@ class SellerList(APIView):
         itens = Seller.objects.all()
         serializer = SellerSerializer(itens, many=True)
         return Response(serializer.data)
-    
+
     def post(self, request, format=None):
-        serializer = SellerSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+        url_test = set_url("http://192.168.160.3:8000/")
+        for i in get_request(url_test):
+            if i["id"] is request.data["product"]:
+                serializer = SellerSerializer(data=request.data)
+                if serializer.is_valid(raise_exception=True):
+                    serializer.save()
+                    return Response(
+                        serializer.data, status=status.HTTP_201_CREATED
+                    )
+                else:
+                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 # Views Django
