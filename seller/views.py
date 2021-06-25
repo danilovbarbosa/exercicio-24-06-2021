@@ -19,7 +19,6 @@ class SellerView(APIView):
     def post(self, request):
         item = request.data.get('name')
 
-        # Create an article from the above data
         serializer = SellerSerializer(data=item)
         if serializer.is_valid(raise_exception=True):
             item_saved = serializer.save()

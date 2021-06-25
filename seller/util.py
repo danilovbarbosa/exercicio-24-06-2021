@@ -5,26 +5,26 @@ def set_url(url: str):
     return url
 
 
-def get_request():
+def get_request(url_api):
     '''
     Função faz requisição e retorna o json com lista de produtos
     param: 
     return: int
     '''
-    url_test = set_url() + "product/"
+    url_test = url_api + "product/"
     r = requests.get(url_test)
     produtos_dict = r.json()
 
     return produtos_dict
 
 
-def post_request():
+def post_request(url_api):
     '''
     Função faz requisição post, enviando dados de produto, e retorna o json do produto
     param: 
     return: int
     '''
-    url_test = set_url() + "product/"
+    url_test = url_api + "product/"
     objeto = {
         "name": "test oi",
         "description": "test oi",
@@ -38,13 +38,13 @@ def post_request():
     return produtos_dict
 
 
-def put_request(id: int):
+def put_request(url_api, id: int):
     '''
     Função faz requisição put, alterando dados do produto e retorna o json do produto deletado
     param: 
     return: int
     '''
-    url_test = f"{set_url()}'product'/{id}/"
+    url_test = f"{url_api}'product'/{id}/"
     objeto = {
         "name": "test put",
         "description": "test put",
@@ -58,13 +58,13 @@ def put_request(id: int):
     return produtos_dict
 
 
-def patch_request():
+def patch_request(url_api):
     '''
     Função faz requisição e retorna o json do produto deletado
     param: 
     return: int
     '''
-    url_test = set_url() + "product/2/"
+    url_test = url_api + "product/2/"
     objeto = {
         "name": "test patch",
     }
@@ -75,13 +75,13 @@ def patch_request():
     return produtos_dict
 
 
-def delete_request() -> int:
+def delete_request(url_api) -> int:
     '''
         Função faz requisição e retorna o status code
         param: 
         return: int
     '''
-    url_test = set_url() + "product/3/"
+    url_test = url_api + "product/3/"
 
     r = requests.delete(url_test)
 
@@ -90,11 +90,11 @@ def delete_request() -> int:
     return produtos_dict
 
 
-# set_url("http://172.28.0.3:8000/")
-# get_request()
-# post_request()
-# put_request()
-# patch_request()
-# delete_request()
-# get_request()
+# url_test = set_url("http://172.28.0.3:8000/")
+# get_request(url_test)
+# post_request(url_test)
+# put_request(url_test)
+# patch_request(url_test)
+# delete_request(url_test)
+# get_request(url_test)
 
