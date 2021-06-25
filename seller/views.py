@@ -1,13 +1,16 @@
-from django.shortcuts import get_object_or_404, render, redirect
+import csv
+
+from setup.settings import BASE_DIR
+
+from django.shortcuts import get_object_or_404, redirect, render
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from seller.forms import SellerForm
 from seller.models import Seller
 from seller.serializers import SellerSerializer
-from seller.util import set_url, get_request
-
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import status
+from seller.util import get_request, set_url
 
 
 # Views DRF
@@ -33,6 +36,20 @@ class SellerList(APIView):
                     )
             else:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class ProdutoList(APIView):
+    def get(self, request, format=None):
+        url_test = set_url("http://192.168.160.3:8000/")
+        field_names = ['id', 'name', 'description', 'price', 'category']
+
+        produtos_dict = get_request(url_test)
+        with open(f'{BASE_DIR}/produtos.csv', 'w') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames = field_names)
+            writer.writeheader()
+            writer.writerows(produtos_dict)
+
+            return Response(status=status.HTTP_201_CREATED)
 
 
 # Views Django
