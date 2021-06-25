@@ -41,11 +41,11 @@ class SellerList(APIView):
 class ProdutoList(APIView):
     def get(self, request, format=None):
         url_test = set_url("http://192.168.160.3:8000/")
-        field_names = ['id', 'name', 'description', 'price', 'category']
+        field_names = ["id", "name", "description", "price", "category"]
 
         produtos_dict = get_request(url_test)
-        with open(f'{BASE_DIR}/produtos.csv', 'w') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames = field_names)
+        with open(f"{BASE_DIR}/produtos.csv", "w") as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=field_names)
             writer.writeheader()
             writer.writerows(produtos_dict)
 

@@ -1,5 +1,4 @@
 import requests
-import csv
 
 
 def set_url(url: str):
