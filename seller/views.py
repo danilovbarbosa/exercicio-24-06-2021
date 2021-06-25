@@ -7,10 +7,11 @@ from seller.serializers import SellerSerializer
 
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import ViewSet
 
 
 # Views DRF
-class SellerView(APIView):
+class SellerView(ViewSet):
     def get(self, request):
         itens = Seller.objects.all()
         serializer = SellerSerializer(itens, many=True)
